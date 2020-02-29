@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="29-02-2019 19:10:00" author="fatihbozik">
+    <changeSet id="29-02-2020 19:10:00" author="fatihbozik">
         <preConditions>
             <not>
                 <foreignKeyConstraintExists foreignKeyName="fk_prd_cat_id"/>
@@ -18,7 +18,7 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
-    <changeSet id="29-02-2019 19:15:00" author="fatihbozik">
+    <changeSet id="29-02-2020 19:15:00" author="fatihbozik">
         <preConditions>
             <not>
                 <foreignKeyConstraintExists foreignKeyName="fk_cat_prn_cat_id"/>
@@ -28,6 +28,45 @@
                                  baseColumnNames="parent_category_id"
                                  constraintName="fk_cat_prn_cat_id"
                                  referencedTableName="categories"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="29-02-2020 23:38:00" author="fatihbozik">
+        <preConditions>
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_cam_cat_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="campaigns"
+                                 baseColumnNames="category_id"
+                                 constraintName="fk_cam_cat_id"
+                                 referencedTableName="categories"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="01-03-2020 02:30:00" author="fatihbozik">
+        <preConditions>
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_sc_items_sc_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="shopping_cart_items"
+                                 baseColumnNames="shopping_cart_id"
+                                 constraintName="fk_sc_items_sc_id"
+                                 referencedTableName="shopping_carts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="01-03-2020 02:35:00" author="fatihbozik">
+        <preConditions>
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_sc_items_prd_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="shopping_cart_items"
+                                 baseColumnNames="product_id"
+                                 constraintName="fk_sc_items_prd_id"
+                                 referencedTableName="products"
                                  referencedColumnNames="id"/>
     </changeSet>
 

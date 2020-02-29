@@ -5,7 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="29-02-2019 18:10:00" author="fatihbozik">
+    <!-- region create products -->
+    <changeSet id="29-02-2020 18:10:00" author="fatihbozik">
         <preConditions onFail="MARK_RAN">
             <not>
                 <sequenceExists sequenceName="seq_product_id"/>
@@ -16,7 +17,7 @@
                         ordered="false"
                         startValue="1"/>
     </changeSet>
-    <changeSet id="29-02-2019 18:15:00" author="fatihbozik">
+    <changeSet id="29-02-2020 18:15:00" author="fatihbozik">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="products"/>
@@ -29,8 +30,10 @@
             <column name="category_id" type="long"/>
         </createTable>
     </changeSet>
+    <!-- endregion -->
 
-    <changeSet id="29-02-2019 18:20:00" author="fatihbozik">
+    <!-- region create categories -->
+    <changeSet id="29-02-2020 18:20:00" author="fatihbozik">
         <preConditions onFail="MARK_RAN">
             <not>
                 <sequenceExists sequenceName="seq_category_id"/>
@@ -41,7 +44,7 @@
                         ordered="false"
                         startValue="1"/>
     </changeSet>
-    <changeSet id="29-02-2019 18:25:00" author="fatihbozik">
+    <changeSet id="29-02-2020 18:25:00" author="fatihbozik">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="categories"/>
@@ -54,5 +57,122 @@
             <column name="parent_category_id" type="long"/>
         </createTable>
     </changeSet>
+    <!-- endregion -->
+
+    <!-- region create campaigns -->
+    <changeSet id="29-02-2020 23:30:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_campaign_id"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_campaign_id"
+                        incrementBy="1"
+                        ordered="false"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="29-02-2020 23:35:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="campaigns"/>
+            </not>
+        </preConditions>
+        <createTable tableName="campaigns">
+            <column name="id" type="long"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="category_id" type="long"/>
+            <column name="discount_value" type="decimal(19,6)"/>
+            <column name="discount_type" type="varchar(50))"/>
+            <column name="item_threshold" type="int"/>
+        </createTable>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region create coupons -->
+    <changeSet id="29-02-2020 23:56:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_coupon_id"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_coupon_id"
+                        incrementBy="1"
+                        ordered="false"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="29-02-2020 23:58:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="coupons"/>
+            </not>
+        </preConditions>
+        <createTable tableName="coupons">
+            <column name="id" type="long"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="min_purchase_amount" type="decimal(19,6)"/>
+            <column name="discount_value" type="decimal(19,6)"/>
+            <column name="discount_type" type="varchar(50))"/>
+        </createTable>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region create shopping_cart_items -->
+    <changeSet id="01-03-2020 02:06:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_sc_item_id"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_sc_item_id"
+                        incrementBy="1"
+                        ordered="false"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="01-03-2020 02:14:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="shopping_cart_items"/>
+            </not>
+        </preConditions>
+        <createTable tableName="shopping_cart_items">
+            <column name="id" type="long"/>
+            <column name="shopping_cart_id" type="long"/>
+            <column name="product_id" type="long"/>
+            <column name="quantity" type="int"/>
+            <column name="unit_price" type="decimal(19,6)"/>
+            <column name="campaign_discount" type="decimal(19,6)"/>
+            <column name="sub_total_price" type="decimal(19,6)"/>
+            <column name="total_price" type="decimal(19,6)"/>
+        </createTable>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region create shopping_carts -->
+    <changeSet id="01-03-2020 02:19:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_sc_id"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_sc_id"
+                        incrementBy="1"
+                        ordered="false"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="01-03-2020 02:24:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="shopping_carts"/>
+            </not>
+        </preConditions>
+        <createTable tableName="shopping_carts">
+            <column name="id" type="long"/>
+            <column name="coupon_discount" type="decimal(19,6)"/>
+            <column name="delivery_cost" type="decimal(19,6)"/>
+            <column name="total_price" type="decimal(19,6)"/>
+        </createTable>
+    </changeSet>
+    <!-- endregion -->
+
 
 </databaseChangeLog>
