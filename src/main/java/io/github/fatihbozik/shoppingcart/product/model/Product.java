@@ -1,7 +1,6 @@
 package io.github.fatihbozik.shoppingcart.product.model;
 
 import io.github.fatihbozik.shoppingcart.category.model.Category;
-import io.github.fatihbozik.shoppingcart.common.model.Price;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Getter
@@ -29,8 +29,8 @@ public class Product implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Embedded
-    private Price price;
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
