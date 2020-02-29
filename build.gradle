@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'checkstyle'
 }
 
 group 'io.github.fatihbozik'
-version '1.0'
+version '1.0.0'
 
 sourceCompatibility = 1.8
 
@@ -14,3 +15,9 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+checkstyle {
+    toolVersion '8.26'
+}
+
+checkstyleMain.source = sourceSets.main.allSource
