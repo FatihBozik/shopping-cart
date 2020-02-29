@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE suppressions PUBLIC
-    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
-    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
     <!-- Suppress MagicNumber checks in all unit tests -->
     <suppress checks="MagicNumber" files="[\\/]test[\\/].*[\\/]"/>
+
+    <!-- Suppress HideUtilityClassConstructor for class that annotated @SpringBootApplication annotation -->
+    <suppress files="ShoppingCartApplication.java" checks="HideUtilityClassConstructor"/>
 </suppressions>

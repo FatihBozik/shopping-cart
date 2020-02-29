@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="29-02-2019 18:10:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_product_id"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_product_id"
+                        incrementBy="1"
+                        ordered="false"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="29-02-2019 18:15:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="products"/>
+            </not>
+        </preConditions>
+        <createTable tableName="products">
+            <column name="id" type="long"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="price_value" type="decimal(19,6)"/>
+            <column name="price_unit" type="varchar(10)"/>
+            <column name="category_id" type="long"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="29-02-2019 18:20:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_category_id"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_category_id"
+                        incrementBy="1"
+                        ordered="false"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="29-02-2019 18:25:00" author="fatihbozik">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="categories"/>
+            </not>
+        </preConditions>
+        <createTable tableName="categories">
+            <column name="id" type="long"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="price" type="decimal(19,6)"/>
+            <column name="parent_category_id" type="long"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

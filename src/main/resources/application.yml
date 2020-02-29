@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: shopping-cart
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    database-change-log-lock-table: SC_DB_CHANGELOG_LOCK
+    database-change-log-table: SC_DB_CHANGE_LOG
+    enabled: true
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:shopping-cart
+    username: test
+    password: test
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  profiles:
+    active: dev

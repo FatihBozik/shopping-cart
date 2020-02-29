@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="29-02-2019 19:10:00" author="fatihbozik">
+        <preConditions>
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_prd_cat_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="products"
+                                 baseColumnNames="category_id"
+                                 constraintName="fk_prd_cat_id"
+                                 referencedTableName="categories"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="29-02-2019 19:15:00" author="fatihbozik">
+        <preConditions>
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_cat_prn_cat_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="categories"
+                                 baseColumnNames="parent_category_id"
+                                 constraintName="fk_cat_prn_cat_id"
+                                 referencedTableName="categories"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
