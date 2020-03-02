@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id "io.freefair.lombok" version "5.0.0-rc4"
     id 'checkstyle'
+    id 'jacoco'
 }
 
 group 'io.github.fatihbozik'
@@ -33,6 +34,13 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
 
 checkstyle {

@@ -1,0 +1,17 @@
+language: java
+os: linux
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - $HOME/.gradle
+
+install:
+  - ./gradlew clean build
+
+after_success:
+  - ./gradlew jacocoTestReport
+  - 'bash <(curl -s https://codecov.io/bash)'
