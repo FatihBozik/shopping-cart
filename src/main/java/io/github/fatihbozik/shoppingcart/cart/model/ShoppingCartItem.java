@@ -1,10 +1,7 @@
 package io.github.fatihbozik.shoppingcart.cart.model;
 
 import io.github.fatihbozik.shoppingcart.product.model.Product;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +12,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "shopping_cart_items")
 public class ShoppingCartItem implements Serializable {
@@ -27,6 +25,7 @@ public class ShoppingCartItem implements Serializable {
     private Long id;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "shopping_cart_id", nullable = false)
     private ShoppingCart shoppingCart;
 

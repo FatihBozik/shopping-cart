@@ -2,10 +2,7 @@ package io.github.fatihbozik.shoppingcart.campaign.model;
 
 import io.github.fatihbozik.shoppingcart.category.model.Category;
 import io.github.fatihbozik.shoppingcart.common.model.DiscountType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +13,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "campaigns")
 public class Campaign implements Serializable {

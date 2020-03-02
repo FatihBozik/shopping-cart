@@ -3,9 +3,11 @@ package io.github.fatihbozik.shoppingcart.campaign.service;
 import io.github.fatihbozik.shoppingcart.campaign.model.Campaign;
 import io.github.fatihbozik.shoppingcart.category.service.CategoryDetail;
 import io.github.fatihbozik.shoppingcart.common.model.DiscountType;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
+@Getter
 public class CampaignDetail {
     private final Long id;
     private final String title;
