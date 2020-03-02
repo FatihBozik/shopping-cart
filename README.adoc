@@ -9,6 +9,6 @@
 :travis-badge: https://travis-ci.org/FatihBozik/shopping-cart.svg?branch=master
 :travis-link: https://travis-ci.org/FatihBozik/shopping-cart
 
-image:{license-badge}[License,{license-file}] image:{codecov-badge}[Coverage,link={codecov-link}] image:{travis-badge}[Build Status,link={travis-link}]
+image:{license-badge}[License,link={license-file}] image:{codecov-badge}[Coverage,link={codecov-link}] image:{travis-badge}[Build Status,link={travis-link}]
 
 Implement an e-commerce shopping cart class.
