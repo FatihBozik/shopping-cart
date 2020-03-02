@@ -5,7 +5,4 @@
 <suppressions>
     <!-- Suppress MagicNumber checks in all unit tests -->
     <suppress checks="MagicNumber" files="[\\/]test[\\/].*[\\/]"/>
-
-    <!-- Suppress HideUtilityClassConstructor for class that annotated @SpringBootApplication annotation -->
-    <suppress files="ShoppingCartApplication.java" checks="HideUtilityClassConstructor"/>
 </suppressions>
