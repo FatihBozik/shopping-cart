@@ -37,7 +37,7 @@ class CouponServiceImplTest {
         coupon1.setDiscountValue(BigDecimal.valueOf(20L));
         coupon1.setMinPurchaseAmount(BigDecimal.valueOf(140L));
 
-        when(couponRepository.findCouponsByStatusAndMinPurchaseAmountGreaterThan(CouponStatus.ACTIVE, BigDecimal.valueOf(150L)))
+        when(couponRepository.findCouponsByStatusAndMinPurchaseAmountLessThanEqual(CouponStatus.ACTIVE, BigDecimal.valueOf(150L)))
                 .thenReturn(Collections.singletonList(coupon1));
 
         List<CouponDetail> couponDetails = couponService.getActiveCouponsByMinPurchaseAmountLessThanEqual(BigDecimal.valueOf(150L));
