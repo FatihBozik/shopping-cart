@@ -1,3 +1,14 @@
 = Shopping Cart
 
+:license-badge: https://img.shields.io/github/license/fatihbozik/shopping-cart
+:license-file: https://github.com/fatihbozik/shopping-cart/blob/master/LICENSE
+
+:codecov-badge: https://codecov.io/gh/fatihbozik/shopping-cart/branch/master/graph/badge.svg
+:codecov-link: https://codecov.io/gh/fatihbozik/shopping-cart
+
+:travis-badge: https://travis-ci.org/FatihBozik/shopping-cart.svg?branch=master
+:travis-link: https://travis-ci.org/FatihBozik/shopping-cart
+
+image:{license-badge}[License,{license-file}] image:{codecov-badge}[Coverage,link={codecov-link}] image:{travis-badge}[Build Status,link={travis-link}]
+
 Implement an e-commerce shopping cart class.
