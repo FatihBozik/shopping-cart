@@ -12,3 +12,72 @@
 image:{license-badge}[License,link={license-file}] image:{codecov-badge}[Coverage,link={codecov-link}] image:{travis-badge}[Build Status,link={travis-link}]
 
 Implement an e-commerce shopping cart class.
+
+== Datasource
+
+[%noheader]
+.H2 Console
+|===
+|*Path*| http://localhost:8080/h2-console[http://localhost:8080/h2-console]
+
+|*Url*
+|jdbc:h2:mem:shopping-cart
+
+|*Username*
+|sa
+
+|*Password*
+|Leave it blank
+|===
+
+== Print Shopping Cart by Id
+
+[source,http]
+----
+GET http://localhost:8080/rest/v10/shopping-carts/{shoppingCartId}/print
+----
+
+.Example Request
+[source,bash]
+----
+curl -X GET http://localhost:8080/rest/v10/shopping-carts/{shoppingCartId}/print
+----
+
+.Example Response
+[source,json]
+----
+{
+  "id": 3,
+  "items": [
+    {
+      "id": 5,
+      "product": {
+        "id": 1,
+        "title": "MacBook Pro 16 inch",
+        "price": 15999,
+        "category": {
+          "id": 2,
+          "title": "Computers",
+          "parentCategoryId": null
+        }
+      },
+      "quantity": 6,
+      "unitPrice": 15999,
+      "campaignDiscount": 47997,
+      "subTotalPrice": 95994,
+      "totalPrice": 47997
+    }
+  ],
+  "couponDiscount": 9599.4,
+  "deliveryCost": 9.99,
+  "totalPrice": 38397.6,
+  "campaignDiscount": 47997,
+  "sumOfTheTotalPricesOfTheItems": 47997
+}
+----
+
+== Contribution
+
+=== License Agreement
+
+By contributing changes to this repository, you agree to license your contributions under the MIT license. This ensures your contributions have the same license as the project. You also assert that you are the original author of the work that you are contributing unless otherwise stated.
