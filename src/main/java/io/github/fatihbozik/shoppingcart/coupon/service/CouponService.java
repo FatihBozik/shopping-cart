@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CouponService {
 
-    List<CouponDetail> getActiveCouponsByMinPurchaseAmountGreaterThan(BigDecimal minPurchaseAmount);
+    List<CouponDetail> getActiveCouponsByMinPurchaseAmountLessThanEqual(BigDecimal minPurchaseAmount);
 }

@@ -3,6 +3,7 @@ package io.github.fatihbozik.shoppingcart.deliverycost;
 import com.google.common.collect.Sets;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCart;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCartItem;
+import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartDetail;
 import io.github.fatihbozik.shoppingcart.category.model.Category;
 import io.github.fatihbozik.shoppingcart.product.model.Product;
 import org.hamcrest.Matchers;
@@ -24,6 +25,7 @@ class DeliveryCostCalculatorTest {
     @Test
     void shouldCalculateDeliveryCostSuccessfully() {
         final Category electronicsCategory = new Category();
+        electronicsCategory.setId(1L);
         electronicsCategory.setTitle("Electronics");
 
         final Product sonyHeadphone = new Product();
@@ -32,6 +34,7 @@ class DeliveryCostCalculatorTest {
         sonyHeadphone.setCategory(electronicsCategory);
 
         final Category computersCategory = new Category();
+        computersCategory.setId(2L);
         computersCategory.setTitle("Computers");
 
         final Product macBookPro = new Product();
@@ -67,7 +70,7 @@ class DeliveryCostCalculatorTest {
         shoppingCart.setCouponDiscount(BigDecimal.valueOf(12));
         shoppingCart.setItems(Sets.newHashSet(sonyHeadphoneItem, macBookProItem, dellXpsItem));
 
-        BigDecimal deliveryCost = deliveryCostCalculator.calculateFor(shoppingCart);
+        BigDecimal deliveryCost = deliveryCostCalculator.calculateFor(new ShoppingCartDetail(shoppingCart));
         assertThat(deliveryCost, Matchers.comparesEqualTo(BigDecimal.valueOf(19.99)));
     }
 }

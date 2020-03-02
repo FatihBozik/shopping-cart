@@ -1,8 +1,12 @@
 package io.github.fatihbozik.shoppingcart.campaign.model;
 
+import com.google.common.base.Objects;
 import io.github.fatihbozik.shoppingcart.category.model.Category;
 import io.github.fatihbozik.shoppingcart.common.model.DiscountType;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +17,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Entity
 @Table(name = "campaigns")
 public class Campaign implements Serializable {
@@ -41,4 +44,21 @@ public class Campaign implements Serializable {
 
     @Column(name = "item_threshold", nullable = false)
     private Integer itemThreshold;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Campaign that = (Campaign) o;
+        return Objects.equal(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

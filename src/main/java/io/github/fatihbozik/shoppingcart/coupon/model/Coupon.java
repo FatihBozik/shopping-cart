@@ -1,7 +1,11 @@
 package io.github.fatihbozik.shoppingcart.coupon.model;
 
+import com.google.common.base.Objects;
 import io.github.fatihbozik.shoppingcart.common.model.DiscountType;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +16,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Entity
 @Table(name = "coupons")
 public class Coupon implements Serializable {
@@ -40,4 +43,21 @@ public class Coupon implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private CouponStatus status;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Coupon that = (Coupon) o;
+        return Objects.equal(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

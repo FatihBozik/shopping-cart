@@ -1,5 +1,6 @@
 package io.github.fatihbozik.shoppingcart.fault;
 
+import io.github.fatihbozik.shoppingcart.util.Errors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ public class CustomRestExceptionHandler {
     @ExceptionHandler(value = {ServiceRuntimeException.class})
     public ResponseEntity<Object> onServiceRuntimeException(ServiceRuntimeException e) {
         LOG.info("onServiceRuntimeException::{}", e.getMessage(), e);
-        final ErrorsView view = new ErrorsView(e.getErrorCode());
+        final ErrorsView view = new ErrorsView(e.getErrorCode(), Errors.getDescription(e.getErrorCode()));
         return ResponseEntity.status(e.getHttpStatus()).body(view);
     }
 }

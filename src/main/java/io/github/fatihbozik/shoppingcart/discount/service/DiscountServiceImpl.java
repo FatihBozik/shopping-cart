@@ -17,8 +17,9 @@ public class DiscountServiceImpl implements DiscountService {
 
     @Override
     @Transactional
-    public void applyDiscounts(Long shoppingCartId) {
+    public ShoppingCartDetail applyDiscounts(Long shoppingCartId) {
         final ShoppingCartDetail shoppingCart = shoppingCartService.getShoppingCartById(shoppingCartId);
         discountRules.forEach(discountRule -> discountRule.apply(shoppingCart));
+        return shoppingCart;
     }
 }

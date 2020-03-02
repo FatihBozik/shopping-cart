@@ -18,8 +18,8 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CouponDetail> getActiveCouponsByMinPurchaseAmountGreaterThan(BigDecimal minPurchaseAmount) {
-        List<Coupon> coupons = couponRepository.findCouponsByStatusAndMinPurchaseAmountGreaterThan(CouponStatus.ACTIVE, minPurchaseAmount);
+    public List<CouponDetail> getActiveCouponsByMinPurchaseAmountLessThanEqual(BigDecimal minPurchaseAmount) {
+        List<Coupon> coupons = couponRepository.findCouponsByStatusAndMinPurchaseAmountLessThanEqual(CouponStatus.ACTIVE, minPurchaseAmount);
         return coupons.stream().map(CouponDetail::new).collect(Collectors.toList());
     }
 }

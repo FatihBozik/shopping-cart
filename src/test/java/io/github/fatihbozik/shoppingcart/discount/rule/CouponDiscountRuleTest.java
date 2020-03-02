@@ -62,7 +62,7 @@ class CouponDiscountRuleTest {
         shoppingCart.setId(1L);
         shoppingCart.setItems(Sets.newHashSet(shoppingCartItem));
         shoppingCart.setTotalPrice(BigDecimal.valueOf(15_000L));
-        when(couponService.getActiveCouponsByMinPurchaseAmountGreaterThan(BigDecimal.valueOf(15_000L)))
+        when(couponService.getActiveCouponsByMinPurchaseAmountLessThanEqual(BigDecimal.valueOf(15_000L)))
                 .thenReturn(Collections.emptyList());
 
         couponDiscountRule.apply(new ShoppingCartDetail(shoppingCart));
@@ -101,7 +101,7 @@ class CouponDiscountRuleTest {
         coupon.setDiscountType(DiscountType.RATE);
         coupon.setMinPurchaseAmount(BigDecimal.valueOf(14_000));
         coupon.setStatus(CouponStatus.ACTIVE);
-        when(couponService.getActiveCouponsByMinPurchaseAmountGreaterThan(BigDecimal.valueOf(15_000L)))
+        when(couponService.getActiveCouponsByMinPurchaseAmountLessThanEqual(BigDecimal.valueOf(15_000L)))
                 .thenReturn(Collections.singletonList(new CouponDetail(coupon)));
 
         couponDiscountRule.apply(new ShoppingCartDetail(shoppingCart));

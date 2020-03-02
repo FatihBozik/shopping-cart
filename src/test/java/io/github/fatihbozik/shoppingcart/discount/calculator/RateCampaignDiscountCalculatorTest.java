@@ -36,7 +36,9 @@ class RateCampaignDiscountCalculatorTest {
         product.setCategory(category);
         shoppingCartItem.setProduct(product);
 
-        final BigDecimal discount = rateCampaignDiscountCalculator.calculateDiscount(new ShoppingCartItemDetail(shoppingCartItem), new CampaignDetail(campaign));
+        final ShoppingCartItemDetail shoppingCartItemDetail = new ShoppingCartItemDetail(shoppingCartItem);
+        final CampaignDetail campaignDetail = new CampaignDetail(campaign);
+        final BigDecimal discount = rateCampaignDiscountCalculator.calculateDiscount(shoppingCartItemDetail, campaignDetail);
         assertThat(discount, Matchers.comparesEqualTo(BigDecimal.valueOf(12)));
     }
 }

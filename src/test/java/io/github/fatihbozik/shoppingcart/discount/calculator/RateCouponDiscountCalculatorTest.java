@@ -44,7 +44,9 @@ class RateCouponDiscountCalculatorTest {
         final ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setId(1L);
         shoppingCart.setItems(Sets.newHashSet(shoppingCartItem));
-        final BigDecimal amountDiscount = rateCouponDiscountCalculator.calculateDiscount(new ShoppingCartDetail(shoppingCart), new CouponDetail(coupon));
+        final ShoppingCartDetail shoppingCartDetail = new ShoppingCartDetail(shoppingCart);
+        final CouponDetail couponDetail = new CouponDetail(coupon);
+        final BigDecimal amountDiscount = rateCouponDiscountCalculator.calculateDiscount(shoppingCartDetail, couponDetail);
         assertThat(amountDiscount, Matchers.comparesEqualTo(BigDecimal.valueOf(12)));
     }
 }

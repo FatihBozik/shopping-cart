@@ -16,7 +16,7 @@ public class ShoppingCartDetail {
     private final Long id;
     private final Set<ShoppingCartItemDetail> items;
     private BigDecimal couponDiscount;
-    private final BigDecimal deliveryCost;
+    private BigDecimal deliveryCost;
     private BigDecimal totalPrice;
 
     public ShoppingCartDetail(ShoppingCart shoppingCart) {

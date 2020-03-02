@@ -35,7 +35,9 @@ class AmountCampaignDiscountCalculatorTest {
         product.setCategory(category);
         shoppingCartItem.setProduct(product);
 
-        final BigDecimal amountDiscount = amountCampaignDiscountCalculator.calculateDiscount(new ShoppingCartItemDetail(shoppingCartItem), new CampaignDetail(campaign));
+        final ShoppingCartItemDetail shoppingCartItemDetail = new ShoppingCartItemDetail(shoppingCartItem);
+        final CampaignDetail campaignDetail = new CampaignDetail(campaign);
+        final BigDecimal amountDiscount = amountCampaignDiscountCalculator.calculateDiscount(shoppingCartItemDetail, campaignDetail);
         assertThat(amountDiscount, Matchers.comparesEqualTo(BigDecimal.valueOf(40)));
     }
 }

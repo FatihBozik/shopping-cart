@@ -7,4 +7,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ErrorsView {
     private final String code;
+    private final String message;
 }

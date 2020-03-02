@@ -30,7 +30,7 @@ public class CouponDiscountRule implements DiscountRule {
     @Override
     public void apply(ShoppingCartDetail shoppingCart) {
         final BigDecimal totalAmountBeforeCoupons = shoppingCart.getSumOfTheTotalPricesOfTheItems();
-        List<CouponDetail> coupons = couponService.getActiveCouponsByMinPurchaseAmountGreaterThan(totalAmountBeforeCoupons);
+        List<CouponDetail> coupons = couponService.getActiveCouponsByMinPurchaseAmountLessThanEqual(totalAmountBeforeCoupons);
         if (CollectionUtils.isEmpty(coupons)) {
             LOG.info("No coupons suitable for your shopping cart::{}", shoppingCart.getId());
             return;

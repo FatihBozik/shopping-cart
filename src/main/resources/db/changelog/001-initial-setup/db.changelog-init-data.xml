@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- region Insert Categories -->
+    <changeSet id="02-03-2020 19:57:00" author="fatihbozik">
+        <comment>Insert Categories</comment>
+        <insert tableName="categories">
+            <column name="id" valueComputed="seq_category_id.nextval"/>
+            <column name="title" value="Electronics"/>
+            <column name="parent_category_id" value="null"/>
+        </insert>
+        <insert tableName="categories">
+            <column name="id" valueComputed="seq_category_id.nextval"/>
+            <column name="title" value="Computers"/>
+            <column name="parent_category_id" value="null"/>
+        </insert>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region Insert Products -->
+    <changeSet id="02-03-2020 20:05:00" author="fatihbozik">
+        <comment>Insert Products</comment>
+        <insert tableName="products">
+            <column name="id" valueComputed="seq_product_id.nextval"/>
+            <column name="title" value="MacBook Pro 16 inch"/>
+            <column name="price" value="15999"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="products">
+            <column name="id" valueComputed="seq_product_id.nextval"/>
+            <column name="title" value="Dell XPS 15 inch"/>
+            <column name="price" value="14999"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="products">
+            <column name="id" valueComputed="seq_product_id.nextval"/>
+            <column name="title" value="Sony MDRXB50AP Extra Bass Earbud Headset"/>
+            <column name="price" value="578"/>
+            <column name="category_id" value="1"/>
+        </insert>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region Insert Campaign -->
+    <changeSet id="02-03-2020 20:12:00" author="fatihbozik">
+        <comment>Insert Campaigns</comment>
+        <insert tableName="campaigns">
+            <column name="id" valueComputed="seq_campaign_id.nextval"/>
+            <column name="title" value="20% Discount for Computers Category"/>
+            <column name="category_id" value="2"/>
+            <column name="discount_type" value="RATE"/>
+            <column name="discount_value" value="20"/>
+            <column name="item_threshold" value="3"/>
+        </insert>
+        <insert tableName="campaigns">
+            <column name="id" valueComputed="seq_campaign_id.nextval"/>
+            <column name="title" value="50% Discount for Computers Category"/>
+            <column name="category_id" value="2"/>
+            <column name="discount_type" value="RATE"/>
+            <column name="discount_value" value="50"/>
+            <column name="item_threshold" value="5"/>
+        </insert>
+        <insert tableName="campaigns">
+            <column name="id" valueComputed="seq_campaign_id.nextval"/>
+            <column name="title" value="5 TL Discount for Computers Category"/>
+            <column name="category_id" value="2"/>
+            <column name="discount_type" value="AMOUNT"/>
+            <column name="discount_value" value="5"/>
+            <column name="item_threshold" value="5"/>
+        </insert>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region Insert Coupons -->
+    <changeSet id="02-03-2020 20:18:00" author="fatihbozik">
+        <comment>Insert Coupons</comment>
+        <insert tableName="coupons">
+            <column name="id" valueComputed="seq_coupon_id.nextval"/>
+            <column name="title" value="Shopping Cart 20% Coupon minimum purchase amount 140 TL"/>
+            <column name="min_purchase_amount" value="140"/>
+            <column name="discount_type" value="RATE"/>
+            <column name="discount_value" value="20"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="coupons">
+            <column name="id" valueComputed="seq_coupon_id.nextval"/>
+            <column name="title" value="Shopping Cart 10 TL Coupon minimum purchase amount 200 TL"/>
+            <column name="min_purchase_amount" value="200"/>
+            <column name="discount_type" value="AMOUNT"/>
+            <column name="discount_value" value="10"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region Insert Shopping Carts -->
+    <changeSet id="02-03-2020 20:27:00" author="fatihbozik">
+        <comment>Insert Shopping Carts</comment>
+        <insert tableName="shopping_carts">
+            <column name="id" valueComputed="seq_sc_id.nextval"/>
+            <column name="coupon_discount" value="0"/>
+            <column name="delivery_cost" value="0"/>
+            <column name="total_price" value="15999"/>
+        </insert>
+        <insert tableName="shopping_carts">
+            <column name="id" valueComputed="seq_sc_id.nextval"/>
+            <column name="coupon_discount" value="0"/>
+            <column name="delivery_cost" value="0"/>
+            <column name="total_price" value="31576"/>
+        </insert>
+        <insert tableName="shopping_carts">
+            <column name="id" valueComputed="seq_sc_id.nextval"/>
+            <column name="coupon_discount" value="0"/>
+            <column name="delivery_cost" value="0"/>
+            <column name="total_price" value="95994"/>
+        </insert>
+    </changeSet>
+    <!-- endregion -->
+
+    <!-- region Insert Shopping Cart Items -->
+    <changeSet id="02-03-2020 20:21:00" author="fatihbozik">
+        <comment>Insert Shopping Cart Items</comment>
+        <insert tableName="shopping_cart_items">
+            <column name="id" valueComputed="seq_sc_item_id.nextval"/>
+            <column name="shopping_cart_id" value="1"/>
+            <column name="product_id" value="1"/>
+            <column name="quantity" value="1"/>
+            <column name="unit_price" value="15999"/>
+            <column name="campaign_discount" value="0"/>
+            <column name="sub_total_price" value="15999"/>
+            <column name="total_price" value="15999"/>
+        </insert>
+        <insert tableName="shopping_cart_items">
+            <column name="id" valueComputed="seq_sc_item_id.nextval"/>
+            <column name="shopping_cart_id" value="2"/>
+            <column name="product_id" value="1"/>
+            <column name="quantity" value="1"/>
+            <column name="unit_price" value="15999"/>
+            <column name="campaign_discount" value="0"/>
+            <column name="sub_total_price" value="15999"/>
+            <column name="total_price" value="15999"/>
+        </insert>
+        <insert tableName="shopping_cart_items">
+            <column name="id" valueComputed="seq_sc_item_id.nextval"/>
+            <column name="shopping_cart_id" value="2"/>
+            <column name="product_id" value="2"/>
+            <column name="quantity" value="1"/>
+            <column name="unit_price" value="14999"/>
+            <column name="campaign_discount" value="0"/>
+            <column name="sub_total_price" value="14999"/>
+            <column name="total_price" value="14999"/>
+        </insert>
+        <insert tableName="shopping_cart_items">
+            <column name="id" valueComputed="seq_sc_item_id.nextval"/>
+            <column name="shopping_cart_id" value="2"/>
+            <column name="product_id" value="3"/>
+            <column name="quantity" value="1"/>
+            <column name="unit_price" value="578"/>
+            <column name="campaign_discount" value="0"/>
+            <column name="sub_total_price" value="578"/>
+            <column name="total_price" value="578"/>
+        </insert>
+        <insert tableName="shopping_cart_items">
+            <column name="id" valueComputed="seq_sc_item_id.nextval"/>
+            <column name="shopping_cart_id" value="3"/>
+            <column name="product_id" value="1"/>
+            <column name="quantity" value="6"/>
+            <column name="unit_price" value="15999"/>
+            <column name="campaign_discount" value="0"/>
+            <column name="sub_total_price" value="95994"/>
+            <column name="total_price" value="95994"/>
+        </insert>
+    </changeSet>
+    <!-- endregion -->
+</databaseChangeLog>

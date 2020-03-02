@@ -1,7 +1,11 @@
 package io.github.fatihbozik.shoppingcart.cart.model;
 
+import com.google.common.base.Objects;
 import io.github.fatihbozik.shoppingcart.product.model.Product;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +16,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Entity
 @Table(name = "shopping_cart_items")
 public class ShoppingCartItem implements Serializable {
@@ -53,4 +56,21 @@ public class ShoppingCartItem implements Serializable {
      */
     @Column(name = "total_price")
     private BigDecimal totalPrice = BigDecimal.ZERO;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ShoppingCartItem that = (ShoppingCartItem) o;
+        return Objects.equal(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
