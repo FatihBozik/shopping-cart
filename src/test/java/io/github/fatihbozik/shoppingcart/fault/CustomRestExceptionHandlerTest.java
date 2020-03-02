@@ -19,7 +19,9 @@ class CustomRestExceptionHandlerTest {
 
     @Test
     void shouldReturnCorrectErrorMessage() {
-        ResponseEntity<ErrorsView> responseEntity = customRestExceptionHandler.onServiceRuntimeException(new ServiceRuntimeException(SHOPPING_CART_NOT_FOUND));
+        final ServiceRuntimeException serviceRuntimeException = new ServiceRuntimeException(SHOPPING_CART_NOT_FOUND);
+        ResponseEntity<ErrorsView> responseEntity = customRestExceptionHandler.onServiceRuntimeException(serviceRuntimeException);
+
         assertThat(Objects.requireNonNull(responseEntity.getBody()).getCode(), is(SHOPPING_CART_NOT_FOUND));
         assertThat(responseEntity.getBody().getMessage(), is(SHOPPING_CART_NOT_FOUND_DESCRIPTION));
     }
