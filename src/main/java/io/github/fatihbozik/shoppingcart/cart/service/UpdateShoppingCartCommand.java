@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 public class UpdateShoppingCartCommand implements Serializable {
@@ -12,11 +13,11 @@ public class UpdateShoppingCartCommand implements Serializable {
 
     private final Long id;
     private final BigDecimal totalPrice;
-    private Set<ShoppingCartItemDetail> shoppingCartItems;
+    private Set<UpdateShoppingCartItemCommand> updateShoppingCartItemCommands;
 
     public UpdateShoppingCartCommand(ShoppingCartDetail shoppingCart) {
         this.id = shoppingCart.getId();
         this.totalPrice = shoppingCart.getTotalPrice();
-        this.shoppingCartItems = shoppingCart.getItems();
+        this.updateShoppingCartItemCommands = shoppingCart.getItems().stream().map(UpdateShoppingCartItemCommand::new).collect(Collectors.toSet());
     }
 }

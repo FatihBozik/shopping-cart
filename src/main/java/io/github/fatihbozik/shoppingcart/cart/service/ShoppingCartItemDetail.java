@@ -40,8 +40,8 @@ public class ShoppingCartItemDetail {
     }
 
     public static Set<ShoppingCartItem> toShoppingCartItems(ShoppingCart shoppingCart,
-                                                            Set<ShoppingCartItemDetail> shoppingCartItemDetails) {
-        return Optional.ofNullable(shoppingCartItemDetails)
+                                                            Set<UpdateShoppingCartItemCommand> updateShoppingCartItemCommands) {
+        return Optional.ofNullable(updateShoppingCartItemCommands)
                 .orElse(Collections.emptySet())
                 .stream()
                 .map(shoppingCartItemDetail -> {

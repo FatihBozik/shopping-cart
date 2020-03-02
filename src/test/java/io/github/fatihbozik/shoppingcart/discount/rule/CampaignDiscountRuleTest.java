@@ -7,9 +7,9 @@ import io.github.fatihbozik.shoppingcart.campaign.service.CampaignService;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCart;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCartItem;
 import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartDetail;
-import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartItemDetail;
 import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartService;
 import io.github.fatihbozik.shoppingcart.cart.service.UpdateShoppingCartCommand;
+import io.github.fatihbozik.shoppingcart.cart.service.UpdateShoppingCartItemCommand;
 import io.github.fatihbozik.shoppingcart.category.model.Category;
 import io.github.fatihbozik.shoppingcart.common.model.DiscountType;
 import io.github.fatihbozik.shoppingcart.product.model.Product;
@@ -157,8 +157,8 @@ class CampaignDiscountRuleTest {
     }
 
     private BigDecimal getCampaignDiscount(UpdateShoppingCartCommand updateShoppingCartCommand) {
-        return updateShoppingCartCommand.getShoppingCartItems().stream()
-                .map(ShoppingCartItemDetail::getCampaignDiscount)
+        return updateShoppingCartCommand.getUpdateShoppingCartItemCommands().stream()
+                .map(UpdateShoppingCartItemCommand::getCampaignDiscount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
