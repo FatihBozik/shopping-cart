@@ -12,7 +12,7 @@ public class CustomRestExceptionHandler {
     private static final Logger LOG = LoggerFactory.getLogger(CustomRestExceptionHandler.class);
 
     @ExceptionHandler(value = {ServiceRuntimeException.class})
-    public ResponseEntity<Object> onServiceRuntimeException(ServiceRuntimeException e) {
+    public ResponseEntity<ErrorsView> onServiceRuntimeException(ServiceRuntimeException e) {
         LOG.info("onServiceRuntimeException::{}", e.getMessage(), e);
         final ErrorsView view = new ErrorsView(e.getErrorCode(), Errors.getDescription(e.getErrorCode()));
         return ResponseEntity.status(e.getHttpStatus()).body(view);
