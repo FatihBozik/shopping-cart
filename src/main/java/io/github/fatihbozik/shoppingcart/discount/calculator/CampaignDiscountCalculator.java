@@ -5,6 +5,6 @@ import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartItemDetail;
 
 import java.math.BigDecimal;
 
-public interface DiscountCalculator {
+public interface CampaignDiscountCalculator {
     BigDecimal calculateDiscount(ShoppingCartItemDetail shoppingCartItem, CampaignDetail campaign);
 }

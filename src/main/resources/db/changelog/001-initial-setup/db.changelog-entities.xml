@@ -89,7 +89,7 @@
     <!-- endregion -->
 
     <!-- region create coupons -->
-    <changeSet id="29-02-2020 23:56:00" author="fatihbozik">
+    <changeSet id="29-02-2020 23:57:30" author="fatihbozik">
         <preConditions onFail="MARK_RAN">
             <not>
                 <sequenceExists sequenceName="seq_coupon_id"/>
@@ -112,6 +112,7 @@
             <column name="min_purchase_amount" type="decimal(19,6)"/>
             <column name="discount_value" type="decimal(19,6)"/>
             <column name="discount_type" type="varchar(50))"/>
+            <column name="status" type="varchar(50))"/>
         </createTable>
     </changeSet>
     <!-- endregion -->

@@ -2,6 +2,7 @@ package io.github.fatihbozik.shoppingcart.cart.service;
 
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCart;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
@@ -9,11 +10,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 @ToString
 public class ShoppingCartDetail {
     private final Long id;
     private final Set<ShoppingCartItemDetail> items;
-    private final BigDecimal couponDiscount;
+    private BigDecimal couponDiscount;
     private final BigDecimal deliveryCost;
     private BigDecimal totalPrice;
 
@@ -35,7 +37,7 @@ public class ShoppingCartDetail {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private BigDecimal getSumOfTheTotalPricesOfTheItems() {
+    public BigDecimal getSumOfTheTotalPricesOfTheItems() {
         return items.stream()
                 .map(ShoppingCartItemDetail::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

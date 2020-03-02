@@ -8,16 +8,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
-public class UpdateShoppingCartCommand implements Serializable {
+public class ApplyCampaignRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private final Long id;
     private final BigDecimal totalPrice;
-    private Set<UpdateShoppingCartItemCommand> updateShoppingCartItemCommands;
+    private Set<UpdateShoppingCartItemRequest> updateShoppingCartItemRequests;
 
-    public UpdateShoppingCartCommand(ShoppingCartDetail shoppingCart) {
+    public ApplyCampaignRequest(ShoppingCartDetail shoppingCart) {
         this.id = shoppingCart.getId();
         this.totalPrice = shoppingCart.getTotalPrice();
-        this.updateShoppingCartItemCommands = shoppingCart.getItems().stream().map(UpdateShoppingCartItemCommand::new).collect(Collectors.toSet());
+        this.updateShoppingCartItemRequests = shoppingCart.getItems().stream().map(UpdateShoppingCartItemRequest::new).collect(Collectors.toSet());
     }
 }

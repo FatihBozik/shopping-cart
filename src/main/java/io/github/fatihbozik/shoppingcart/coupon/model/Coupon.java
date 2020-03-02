@@ -36,4 +36,8 @@ public class Coupon implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "discount_type")
     private DiscountType discountType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private CouponStatus status;
 }

@@ -6,10 +6,10 @@ import io.github.fatihbozik.shoppingcart.campaign.service.CampaignDetail;
 import io.github.fatihbozik.shoppingcart.campaign.service.CampaignService;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCart;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCartItem;
+import io.github.fatihbozik.shoppingcart.cart.service.ApplyCampaignRequest;
 import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartDetail;
 import io.github.fatihbozik.shoppingcart.cart.service.ShoppingCartService;
-import io.github.fatihbozik.shoppingcart.cart.service.UpdateShoppingCartCommand;
-import io.github.fatihbozik.shoppingcart.cart.service.UpdateShoppingCartItemCommand;
+import io.github.fatihbozik.shoppingcart.cart.service.UpdateShoppingCartItemRequest;
 import io.github.fatihbozik.shoppingcart.category.model.Category;
 import io.github.fatihbozik.shoppingcart.common.model.DiscountType;
 import io.github.fatihbozik.shoppingcart.product.model.Product;
@@ -81,10 +81,10 @@ class CampaignDiscountRuleTest {
 
         campaignDiscountRule.apply(new ShoppingCartDetail(shoppingCart));
 
-        final ArgumentCaptor<UpdateShoppingCartCommand> argumentCaptor = ArgumentCaptor.forClass(UpdateShoppingCartCommand.class);
-        verify(shoppingCartService).updateShoppingCart(argumentCaptor.capture());
+        final ArgumentCaptor<ApplyCampaignRequest> argumentCaptor = ArgumentCaptor.forClass(ApplyCampaignRequest.class);
+        verify(shoppingCartService).applyCampaign(argumentCaptor.capture());
 
-        final UpdateShoppingCartCommand updateShoppingCartCommand = argumentCaptor.getValue();
+        final ApplyCampaignRequest updateShoppingCartCommand = argumentCaptor.getValue();
         assertThat(updateShoppingCartCommand.getId(), is(1L));
         assertThat(updateShoppingCartCommand.getTotalPrice(), Matchers.comparesEqualTo(BigDecimal.valueOf(15_000L)));
     }
@@ -147,18 +147,18 @@ class CampaignDiscountRuleTest {
 
         campaignDiscountRule.apply(new ShoppingCartDetail(shoppingCart));
 
-        final ArgumentCaptor<UpdateShoppingCartCommand> argumentCaptor = ArgumentCaptor.forClass(UpdateShoppingCartCommand.class);
-        verify(shoppingCartService).updateShoppingCart(argumentCaptor.capture());
+        final ArgumentCaptor<ApplyCampaignRequest> argumentCaptor = ArgumentCaptor.forClass(ApplyCampaignRequest.class);
+        verify(shoppingCartService).applyCampaign(argumentCaptor.capture());
 
-        final UpdateShoppingCartCommand updateShoppingCartCommand = argumentCaptor.getValue();
+        final ApplyCampaignRequest updateShoppingCartCommand = argumentCaptor.getValue();
         assertThat(updateShoppingCartCommand.getId(), is(1L));
         assertThat(getCampaignDiscount(updateShoppingCartCommand), Matchers.comparesEqualTo(BigDecimal.valueOf(52_500L)));
         assertThat(updateShoppingCartCommand.getTotalPrice(), Matchers.comparesEqualTo(BigDecimal.valueOf(52_500L)));
     }
 
-    private BigDecimal getCampaignDiscount(UpdateShoppingCartCommand updateShoppingCartCommand) {
-        return updateShoppingCartCommand.getUpdateShoppingCartItemCommands().stream()
-                .map(UpdateShoppingCartItemCommand::getCampaignDiscount)
+    private BigDecimal getCampaignDiscount(ApplyCampaignRequest updateShoppingCartCommand) {
+        return updateShoppingCartCommand.getUpdateShoppingCartItemRequests().stream()
+                .map(UpdateShoppingCartItemRequest::getCampaignDiscount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

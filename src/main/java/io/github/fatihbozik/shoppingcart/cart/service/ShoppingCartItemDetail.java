@@ -1,6 +1,5 @@
 package io.github.fatihbozik.shoppingcart.cart.service;
 
-import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCart;
 import io.github.fatihbozik.shoppingcart.cart.model.ShoppingCartItem;
 import io.github.fatihbozik.shoppingcart.product.service.ProductDetail;
 import lombok.Getter;
@@ -8,10 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -37,19 +32,5 @@ public class ShoppingCartItemDetail {
 
     public void calculateAndSetTotalPrice() {
         this.totalPrice = subTotalPrice.subtract(campaignDiscount);
-    }
-
-    public static Set<ShoppingCartItem> toShoppingCartItems(ShoppingCart shoppingCart,
-                                                            Set<UpdateShoppingCartItemCommand> updateShoppingCartItemCommands) {
-        return Optional.ofNullable(updateShoppingCartItemCommands)
-                .orElse(Collections.emptySet())
-                .stream()
-                .map(shoppingCartItemDetail -> {
-                    final ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
-                    shoppingCartItem.setShoppingCart(shoppingCart);
-                    shoppingCartItem.setCampaignDiscount(shoppingCartItemDetail.getCampaignDiscount());
-                    shoppingCartItem.setTotalPrice(shoppingCartItemDetail.getTotalPrice());
-                    return shoppingCartItem;
-                }).collect(Collectors.toSet());
     }
 }

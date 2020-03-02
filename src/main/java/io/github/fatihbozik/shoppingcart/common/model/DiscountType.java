@@ -1,22 +1,32 @@
 package io.github.fatihbozik.shoppingcart.common.model;
 
-import io.github.fatihbozik.shoppingcart.discount.calculator.AmountDiscountCalculator;
-import io.github.fatihbozik.shoppingcart.discount.calculator.DiscountCalculator;
-import io.github.fatihbozik.shoppingcart.discount.calculator.RateDiscountCalculator;
+import io.github.fatihbozik.shoppingcart.discount.calculator.*;
 
 public enum DiscountType {
     RATE {
         @Override
-        public DiscountCalculator getCalculator() {
-            return new RateDiscountCalculator();
+        public CampaignDiscountCalculator getCampaignDiscountCalculator() {
+            return new RateCampaignDiscountCalculator();
+        }
+
+        @Override
+        public CouponDiscountCalculator getCouponDiscountCalculator() {
+            return new RateCouponDiscountCalculator();
         }
     },
     AMOUNT {
         @Override
-        public DiscountCalculator getCalculator() {
-            return new AmountDiscountCalculator();
+        public CampaignDiscountCalculator getCampaignDiscountCalculator() {
+            return new AmountCampaignDiscountCalculator();
+        }
+
+        @Override
+        public CouponDiscountCalculator getCouponDiscountCalculator() {
+            return new AmountCouponDiscountCalculator();
         }
     };
 
-    public abstract DiscountCalculator getCalculator();
+    public abstract CampaignDiscountCalculator getCampaignDiscountCalculator();
+
+    public abstract CouponDiscountCalculator getCouponDiscountCalculator();
 }
